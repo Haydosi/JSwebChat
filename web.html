@@ -1,0 +1,93 @@
+<html>
+
+<head>
+    <script>
+        var storage1 = []
+
+        function setChild(value) {
+            var holder = document.querySelector("#holder")
+            var createDiv = document.createElement("div")
+            holder.appendChild(createDiv);
+            createDiv.innerHTML = value
+        }
+
+        function startUp(){
+            console.log("started")
+            storage1 = JSON.parse(localStorage.getItem('localStorage1')) || []
+            console.log(storage1)       
+            storage1.forEach(setChild)
+            
+        }
+        function yeetAlert() {
+            alert("YEET!");
+            //gives a yeet alert
+        }
+        function changeAlert() {
+            var value = document.querySelector("#myinput").value
+            var mydiv = document.querySelector("#myoutput")
+            mydiv.innerHTML = value
+            // document.write(value);
+            // allows writing in box to appear on page
+        }
+        function infiniteDiv() {
+            var myInput = document.querySelector("#myinput2");
+            var value2 = myInput.value;
+            var createDiv = document.createElement("div")
+            var holder = document.querySelector("#holder")
+            storage1.push(value2)
+            console.log(storage1)
+            holder.appendChild(createDiv);
+            createDiv.innerHTML = value2
+            myInput.value = ""
+            console.log(value2)
+            console.log(myInput)
+            // "" = document.querySelector("#myinput2").value
+            // document.createElement("div", id="yoted")
+            // var mydiv3 = document.querySelector("#yoted")
+            // var mydiv2 = document.querySelector("#myoutput2")
+            // mydiv2.innerHTML = "yoot"
+            // mydiv3.innerHTML = "wheat"
+            console.log("ran infiniteDiv")
+            // this allows writing to appear on page without overwriting the old writing
+        
+            localStorage.setItem('localStorage1', JSON.stringify(storage1))
+
+        }
+    </script>
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css"> -->
+    <style>
+        body {
+            color: darkgreen;
+            background: whitesmoke;
+            font-family: xkcd
+        }
+
+        /* @font-face {
+            font-family: xkcd;
+            src: url(file:///Users/hayden/code/xkcd-script.ttf); */
+        @font-face {
+            font-family: xkcd;
+            src: url(https://github.com/ipython/xkcd-font/raw/master/xkcd-script/font/xkcd-script.ttf);
+        }
+    </style>
+</head>
+
+<body onLoad="startUp()">
+        <a name="Top">
+        <p>Hello and welcome to my basic project</p>
+        <a href="#Bot">Go to Bottom</a>
+        <!-- <p><strong>Banana</strong></p>
+    <p><strong>Pls don't kill me, I need to-</strong></p> -->
+        <p><button onClick="yeetAlert()">YEET</button></p>
+        <p><input id="myinput" type=text OnChange="changeAlert()"></p>
+        <p>
+            <div id="myoutput"></div>
+        </p>
+        <p id=holder></p>
+        <p><input id="myinput2" type=text OnChange="infiniteDiv()"></p>
+        <!-- <img src="file:///Users/hayden/code/peely.jpg" alt="peely"> -->
+        <a href="#Top">Go to Top</a>
+        <a name="Bot">
+</body>
+
+</html>
