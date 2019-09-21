@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <script>
+        var storedUsername = "admin"
+        var storedPassword = "pass"
+        function login() {
+            var username = document.querySelector("#username").value
+            var password = document.querySelector("#password").value
+            var status = document.querySelector("#status")
+            if (username == storedUsername) {
+                if (password == storedPassword) {
+                    status.innerHTML = "login successful"
+                    console.log("suceed")
+                    setTimeout(redirect, 1000)
+                } else {
+                    status.innerHTML = "login failed"
+                    console.log("fail")
+                }
+            } else {
+                status.innerHTML = "login failed"
+                console.log("fail")
+            }
+        }
+        function redirect(){
+            var loggedIn = "1"
+            localStorage.setItem("localStorage2", loggedIn)
+            window.location = "index.html"
+        }
+    </script>
+</head>
+
+<body>
+    <p>Please Login<p>
+            <p>username:<input id="username" type=text></p>
+            <p>password:<input id="password" type=text></p>
+            <p><button onClick="login()">LOGIN</button></p>
+            <div id="status"></div>
+</body>
+
+</html>

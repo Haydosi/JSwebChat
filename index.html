@@ -3,7 +3,6 @@
 <head>
     <script>
         var storage1 = []
-
         function setChild(value) {
             var holder = document.querySelector("#holder")
             var createDiv = document.createElement("div")
@@ -12,11 +11,15 @@
         }
 
         function startUp(){
-            console.log("started")
-            storage1 = JSON.parse(localStorage.getItem('localStorage1')) || []
-            console.log(storage1)       
-            storage1.forEach(setChild)
-            
+            var loggedIn = localStorage.getItem('localStorage2')
+            if (loggedIn == "1") {
+                console.log("started")
+                storage1 = JSON.parse(localStorage.getItem('localStorage1')) || []
+                console.log(storage1)       
+                storage1.forEach(setChild)
+            } else {
+               window.location = "login.html"
+            }
         }
         function yeetAlert() {
             alert("YEET!");
@@ -59,7 +62,12 @@
         body {
             color: darkgreen;
             background: whitesmoke;
-            font-family: xkcd
+            font-family: xkcd;
+            font-size: 14pt
+        }
+
+        a:visited{
+            color: blue
         }
 
         /* @font-face {
