@@ -56,6 +56,11 @@
             localStorage.setItem('localStorage1', JSON.stringify(storage1))
 
         }
+        function logOut(){
+            var loggedIn = "0"
+            localStorage.setItem("localStorage2", loggedIn)
+            window.location = "login.html"
+        }
     </script>
     <!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css"> -->
     <style>
@@ -95,6 +100,7 @@
         <p><input id="myinput2" type=text OnChange="infiniteDiv()"></p>
         <!-- <img src="file:///Users/hayden/code/peely.jpg" alt="peely"> -->
         <a href="#Top">Go to Top</a>
+        <p><button onClick="logOut()">LOG OUT</button></p>
         <a name="Bot">
 </body>
 
