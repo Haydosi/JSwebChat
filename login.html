@@ -9,6 +9,14 @@
             beta: "tester",
             personal: "yeet"
         }
+        function startUp(){
+            var loggedIn = localStorage.getItem('localStorage2')
+            if (loggedIn == "1"){
+                window.location = "index.html"
+            } else {
+                users = JSON.parse(localStorage.getItem('localStorage3')) || []
+            }
+        }
         function login() {
             var username = document.querySelector("#username").value
             var password = document.querySelector("#password").value
@@ -40,15 +48,20 @@
             localStorage.setItem("localStorage2", loggedIn)
             window.location = "index.html"
         }
+        function redirect2(){
+            window.location = "signUp.html"
+        }
     </script>
 </head>
 
-<body>
+<body onLoad="startUp()">
     <p>Please Login<p>
             <p>username:<input id="username" type=text></p>
             <p>password:<input id="password" type=text></p>
             <p><button onClick="login()">LOGIN</button></p>
             <div id="status"></div>
+            <p>Don't have an account?</p>
+            <p><button onClick="redirect2()">Sign Up</button></p>
 </body>
 
 </html>

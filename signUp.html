@@ -1,0 +1,44 @@
+<html>
+
+<head>
+    <script>
+        var users = {
+            admin: "pass",
+            beta: "tester",
+            personal: "yeet"
+        }
+        function startUp(){
+            var loggedIn = localStorage.getItem('localStorage2')
+            if (loggedIn == "1"){
+                window.location = "index.html"
+            } else {
+                
+            }
+        }
+        function signUp(){
+            var username = document.querySelector("#username").value
+            var password = document.querySelector("#password").value
+            var status = document.querySelector("#status")
+            users[username] = password
+            console.log(users) 
+            localStorage.setItem('localStorage3', JSON.stringify(users))
+            status.innerHTML = "sign up successful"
+            setTimeout(redirect, 1000)
+        }
+        function redirect(){
+            var loggedIn = "1"
+            localStorage.setItem("localStorage2", loggedIn)
+            window.location = "index.html"
+        }
+    </script>
+</head>
+
+<body onLoad = "startUp()">
+    <p>Sign up, like login, is in beta. It will not work properly until later</p>
+    <p>username:<input id="username" type=text></p>
+    <p>password:<input id="password" type=text></p>
+    <p><button onClick="signUp()">Sign Up</button></p>
+    <p><div id="status"></div></p>
+</body>
+
+</html>
