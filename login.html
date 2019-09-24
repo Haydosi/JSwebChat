@@ -2,25 +2,36 @@
 
 <head>
     <script>
+        var users = {}
         // var storedUsername = "admin"
         // var storedPassword = "pass"
-        var users = {
-            admin: "pass",
-            beta: "tester",
-            personal: "yeet"
+        // var users = {
+        //     admin: "pass",
+        //     beta: "tester",
+        //     personal: "yeet"
+        // }
+        function getUsersLocal() {
+            return Promise.resolve(JSON.parse(localStorage.getItem('localStorage3')) || [])
         }
-        function startUp(){
+        function getUsersRemote() {
+            return fetch("https://haydenivins.s3-ap-southeast-2.amazonaws.com/jswebchat.json")
+                .then(response => response.json())
+        }
+        function startUp() {
             var loggedIn = localStorage.getItem('localStorage2')
-            if (loggedIn == "1"){
+            if (loggedIn == "1") {
                 window.location = "index.html"
             } else {
-                users = JSON.parse(localStorage.getItem('localStorage3')) || []
+                getUsersRemote().then(response => {
+                    users = response
+                });
             }
         }
         function login() {
             var username = document.querySelector("#username").value
             var password = document.querySelector("#password").value
             var status = document.querySelector("#status")
+            console.log('users', users)
             if (users[username] == password) {
                 status.innerHTML = "login successful"
                 console.log("succeed")
@@ -43,12 +54,12 @@
             //     console.log("fail")
             // }
         }
-        function redirect(){
+        function redirect() {
             var loggedIn = "1"
             localStorage.setItem("localStorage2", loggedIn)
             window.location = "index.html"
         }
-        function redirect2(){
+        function redirect2() {
             window.location = "signUp.html"
         }
     </script>
