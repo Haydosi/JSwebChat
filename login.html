@@ -32,7 +32,7 @@
             var password = document.querySelector("#password").value
             var status = document.querySelector("#status")
             console.log('users', users)
-            if (users[username] == password) {
+            if (users[username].password == password) {
                 status.innerHTML = "login successful"
                 console.log("succeed")
                 setTimeout(redirect, 1000)
@@ -63,16 +63,21 @@
             window.location = "signUp.html"
         }
     </script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
 </head>
 
 <body onLoad="startUp()">
-    <p>Please Login<p>
-            <p>username:<input id="username" type=text></p>
-            <p>password:<input id="password" type=text></p>
-            <p><button onClick="login()">LOGIN</button></p>
-            <div id="status"></div>
-            <p>Don't have an account?</p>
-            <p><button onClick="redirect2()">Sign Up</button></p>
+  <div class="hero-body">
+        <div class="container has-text-centered">
+                <p>Please Login<p>
+                        <p>username:<input id="username" type=text></p>
+                        <p>password:<input id="password" type=text></p>
+                        <p><button onClick="login()">LOGIN</button></p>
+                        <div id="status"></div>
+                        <p>Don't have an account?</p>
+                        <p><button onClick="redirect2()">Sign Up</button></p>
+        </div>
+      </div>
 </body>
 
 </html>

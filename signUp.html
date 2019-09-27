@@ -27,7 +27,7 @@
         function createUserRemote(username, password) {
             getUsersRemote()
                 .then(users => {
-                    users[username] = password
+                    users[username] = { password: password, username: username }
                     return fetch("https://haydenivins.s3-ap-southeast-2.amazonaws.com/jswebchat.json",
                         { method: "PUT", body: JSON.stringify(users) })
                 })
@@ -36,6 +36,17 @@
                 })
         }
         // add user to users
+        function deleteUserRemote(){
+            getUsersRemote()
+            .then (users => {
+                    delete users[username] 
+                    return fetch("https://haydenivins.s3-ap-southeast-2.amazonaws.com/jswebchat.json",
+                        { method: "PUT", body: JSON.stringify(users) })
+                })
+                .then(response => {
+                    console.log('deleted user')
+                })
+        }
         function signUp() {
             var username = document.querySelector("#username").value
             var password = document.querySelector("#password").value
@@ -50,16 +61,21 @@
             window.location = "index.html"
         }
     </script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
 </head>
 
 <body onLoad="startUp()">
-    <p>Sign up, like login, is in beta. It will not work properly until later</p>
-    <p>username:<input id="username" type=text></p>
-    <p>password:<input id="password" type=text></p>
-    <p><button onClick="signUp()">Sign Up</button></p>
-    <p>
-        <div id="status"></div>
-    </p>
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <p>Sign up, like login, is in beta. It will not work properly until later</p>
+            <p>username:<input id="username" type=text></p>
+            <p>password:<input id="password" type=text></p>
+            <p><button onClick="signUp()">Sign Up</button></p>
+            <p>
+                <div id="status"></div>
+            </p>
+        </div>
+    </div>
 </body>
 
 </html>
