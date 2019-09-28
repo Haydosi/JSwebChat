@@ -36,10 +36,10 @@
                 })
         }
         // add user to users
-        function deleteUserRemote(){
+        function deleteUserRemote() {
             getUsersRemote()
-            .then (users => {
-                    delete users[username] 
+                .then(users => {
+                    delete users[username]
                     return fetch("https://haydenivins.s3-ap-southeast-2.amazonaws.com/jswebchat.json",
                         { method: "PUT", body: JSON.stringify(users) })
                 })
@@ -65,17 +65,19 @@
 </head>
 
 <body onLoad="startUp()">
-    <div class="hero-body">
-        <div class="container has-text-centered">
-            <p>Sign up, like login, is in beta. It will not work properly until later</p>
-            <p>username:<input id="username" type=text></p>
-            <p>password:<input id="password" type=text></p>
-            <p><button onClick="signUp()">Sign Up</button></p>
-            <p>
-                <div id="status"></div>
-            </p>
+    <section class="hero is-fullheight">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <p>Sign up, like login, is in beta. It will not work properly until later</p>
+                <p>username:<input id="username" type=text></p>
+                <p>password:<input id="password" type=text></p>
+                <p><button onClick="signUp()">Sign Up</button></p>
+                <p>
+                    <div id="status"></div>
+                </p>
+            </div>
         </div>
-    </div>
+    </section>
 </body>
 
 </html>

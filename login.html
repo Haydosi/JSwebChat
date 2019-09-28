@@ -62,22 +62,74 @@
         function redirect2() {
             window.location = "signUp.html"
         }
+        function viewPassword() {
+            console.log("ran")
+            var passwordInput = document.querySelector("#password");
+            var eyeIcon = document.querySelector("#eye");
+            if (passwordInput.type == "password") {
+                passwordInput.type = "text";
+                eyeIcon.classList.remove('mdi-eye');
+                eyeIcon.classList.add('mdi-eye-off');
+            } else {
+                passwordInput.type = "password";
+                eyeIcon.classList.remove('mdi-eye-off');
+                eyeIcon.classList.add('mdi-eye');
+            }
+        }
     </script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.materialdesignicons.com/4.4.95/css/materialdesignicons.min.css">
 </head>
 
 <body onLoad="startUp()">
-  <div class="hero-body">
-        <div class="container has-text-centered">
-                <p>Please Login<p>
-                        <p>username:<input id="username" type=text></p>
-                        <p>password:<input id="password" type=text></p>
-                        <p><button onClick="login()">LOGIN</button></p>
-                        <div id="status"></div>
-                        <p>Don't have an account?</p>
-                        <p><button onClick="redirect2()">Sign Up</button></p>
+    <section class="hero is-fullheight">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <!-- <p>Please Login</p>
+                <p>username:<input id="username" type=text></p>
+                <p>password:<input id="password" type=text></p>
+                <p><button onClick="login()">LOGIN</button></p>
+                <div id="status"></div>
+                <p>Don't have an account?</p>
+                <p><button onClick="redirect2()">Sign Up</button></p> -->
+                <div style="width: 400px" class="container has-text-centered">
+                    <div class="field">
+                        <p class="control has-icons-left has-icons-right">
+                            <input class="input" type="username" placeholder="Username" id="username">
+                            <span class="icon is-small is-left">
+                                <i class="mdi mdi-account"></i>
+                            </span>
+                            <span class="icon is-small is-right">
+                                <i class="fas fa-check"></i>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="field">
+                        <p class="control has-icons-left has-icons-right">
+                            <input class="input" type="password" placeholder="Password" id="password">
+                            <span class="icon is-small is-left">
+                                <i class="mdi mdi-lock"></i>
+                            </span>
+                            <span class="icon is-small is-right">
+                                <i class="mdi mdi-eye" onClick="viewPassword()" style="pointer-events: initial" id="eye"></i>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="field">
+                        <p class="control has-text-centered">
+                            <button class="button is-success" onClick="login()">
+                                Login
+                            </button>
+                            <button class="button is-success" onClick="redirect2()">
+                                Or sign up here
+                            </button>
+                        </p>
+                    </div>
+                    <div id="status"></div>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 </body>
 
 </html>
