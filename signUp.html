@@ -5,7 +5,7 @@
         function startUp() {
             var loggedIn = localStorage.getItem('localStorage2')
             if (loggedIn == "1") {
-                window.location = "index.html"
+                redirect("index.html")
             } else {
 
             }
@@ -19,10 +19,6 @@
             users[username] = password
             localStorage.setItem('localStorage3', JSON.stringify(users))
             // localStorage.setItem('localStorage3', JSON.stringify(users))
-        }
-        function getUsersRemote() {
-            return fetch("https://haydenivins.s3-ap-southeast-2.amazonaws.com/jswebchat.json")
-                .then(response => response.json())
         }
         function createUserRemote(username, password) {
             getUsersRemote()
@@ -53,15 +49,30 @@
             var status = document.querySelector("#status")
             createUserRemote(username, password)
             status.innerHTML = "sign up successful"
-            setTimeout(redirect, 1000)
+            setTimeout(postLoggedIn, 1000)
         }
-        function redirect() {
-            var loggedIn = "1"
-            localStorage.setItem("localStorage2", loggedIn)
-            window.location = "index.html"
+        function viewPassword() {
+            console.log("ran")
+            var passwordInput = document.querySelector("#password");
+            var eyeIcon = document.querySelector("#eye");
+            if (passwordInput.type == "password") {
+                passwordInput.type = "text";
+                eyeIcon.classList.remove('mdi-eye');
+                eyeIcon.classList.add('mdi-eye-off');
+            } else {
+                passwordInput.type = "password";
+                eyeIcon.classList.remove('mdi-eye-off');
+                eyeIcon.classList.add('mdi-eye');
+            }
+        }
+        function backToLogin() {
+            redirect("login.html")
         }
     </script>
+    <script src="functions.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.materialdesignicons.com/4.4.95/css/materialdesignicons.min.css">
 </head>
 
 <body onLoad="startUp()">
@@ -69,14 +80,39 @@
         <div class="hero-body">
             <div class="container has-text-centered">
                 <p>Sign up, like login, is in beta. It will not work properly until later</p>
-                <p>username:<input id="username" type=text></p>
-                <p>password:<input id="password" type=text></p>
-                <p><button onClick="signUp()">Sign Up</button></p>
-                <p>
-                    <div id="status"></div>
-                </p>
+                <div style="width: 400px" class="container has-text-centered">
+                    <div class="field">
+                        <p class="control has-icons-left has-icons-right">
+                            <input class="input" type="username" placeholder="Username" id="username">
+                            <span class="icon is-small is-left">
+                                <i class="mdi mdi-account"></i>
+                            </span>
+                            <span class="icon is-small is-right">
+                                <i class="fas fa-check"></i>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="field">
+                        <p class="control has-icons-left has-icons-right">
+                            <input class="input" type="password" placeholder="Password" id="password">
+                            <span class="icon is-small is-left">
+                                <i class="mdi mdi-lock"></i>
+                            </span>
+                            <span class="icon is-small is-right">
+                                <i class="mdi mdi-eye" onClick="viewPassword()" style="pointer-events: initial"
+                                    id="eye"></i>
+                            </span>
+                        </p>
+                    </div>
+                    <div>
+                        <button Class="button is-primary" onClick="signUp()">Sign Up</button>
+                        <button Class="button is-link" onClick="backToLogin()">Back to login</button>
+                    </div>
+                    <p>
+                        <div id="status"></div>
+                    </p>
+                </div>
             </div>
-        </div>
     </section>
 </body>
 
