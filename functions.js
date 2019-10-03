@@ -18,7 +18,7 @@ function viewPassword() {
 function postLoggedIn() {
     var loggedIn = "1"
     localStorage.setItem("localStorage2", loggedIn)
-    Redirect("index.html")
+    redirect("index.html")
 }
 function getUsersRemote() {
     return fetch("https://haydenivins.s3-ap-southeast-2.amazonaws.com/jswebchat.json")
