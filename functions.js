@@ -24,3 +24,14 @@ function getUsersRemote() {
     return fetch("https://haydenivins.s3-ap-southeast-2.amazonaws.com/jswebchat.json")
         .then(response => response.json())
 }
+function deleteUserRemote() {
+    getUsersRemote()
+        .then(users => {
+            delete users[username]
+            return fetch("https://haydenivins.s3-ap-southeast-2.amazonaws.com/jswebchat.json",
+                { method: "PUT", body: JSON.stringify(users) })
+        })
+        .then(response => {
+            console.log('deleted user')
+        })
+}

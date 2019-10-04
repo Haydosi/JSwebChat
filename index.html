@@ -10,15 +10,15 @@
             createDiv.innerHTML = value
         }
 
-        function startUp(){
+        function startUp() {
             var loggedIn = localStorage.getItem('localStorage2')
             if (loggedIn == "1") {
                 console.log("started")
                 storage1 = JSON.parse(localStorage.getItem('localStorage1')) || []
-                console.log(storage1)       
+                console.log(storage1)
                 storage1.forEach(setChild)
             } else {
-               redirect("login.html")
+                redirect("login.html")
             }
         }
         function yeetAlert() {
@@ -52,11 +52,11 @@
             // mydiv3.innerHTML = "wheat"
             console.log("ran infiniteDiv")
             // this allows writing to appear on page without overwriting the old writing
-        
+
             localStorage.setItem('localStorage1', JSON.stringify(storage1))
 
         }
-        function logOut(){
+        function logOut() {
             var loggedIn = "0"
             localStorage.setItem("localStorage2", loggedIn)
             redirect("login.html")
@@ -64,7 +64,8 @@
     </script>
     <script src="functions.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.materialdesignicons.com/4.4.95/css/materialdesignicons.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.materialdesignicons.com/4.4.95/css/materialdesignicons.min.css">
     <style>
         body {
             color: darkgreen;
@@ -73,7 +74,7 @@
             font-size: 14pt
         }
 
-        a:visited{
+        a:visited {
             color: blue
         }
 
@@ -88,22 +89,22 @@
 </head>
 
 <body onLoad="startUp()">
-        <a name="Top"></a>
-        <p>Hello and welcome to my basic project</p>
-        <a href="#Bot">Go to Bottom</a>
-        <!-- <p><strong>Banana</strong></p>
+    <a name="Top"></a>
+    <p>Hello and welcome to my basic project</p>
+    <a href="#Bot">Go to Bottom</a>
+    <!-- <p><strong>Banana</strong></p>
     <p><strong>Pls don't kill me, I need to-</strong></p> -->
-        <p><button class="button is-small" onClick="yeetAlert()">YEET</button></p>
-        <p><input id="myinput" type=text OnChange="changeAlert()"></p>
-        <p>
-            <div id="myoutput"></div>
-        </p>
-        <p id=holder></p>
-        <p><input id="myinput2" type=text OnChange="infiniteDiv()"></p>
-        <!-- <img src="file:///Users/hayden/code/peely.jpg" alt="peely"> -->
-        <a href="#Top">Go to Top</a>
-        <p><button class="button is-small is-danger" onClick="logOut()">LOG OUT</button></p>
-        <a name="Bot"></a>
+    <p><button class="button is-small" onClick="yeetAlert()">YEET</button></p>
+    <p><input id="myinput" type=text OnChange="changeAlert()"></p>
+    <p>
+        <div id="myoutput"></div>
+    </p>
+    <p id=holder></p>
+    <p><input id="myinput2" type=text OnChange="infiniteDiv()"></p>
+    <!-- <img src="file:///Users/hayden/code/peely.jpg" alt="peely"> -->
+    <a href="#Top">Go to Top</a>
+    <p><button class="button is-small is-danger" onClick="logOut()">LOG OUT</button></p>
+    <a name="Bot"></a>
 </body>
 
 </html>

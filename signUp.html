@@ -21,35 +21,39 @@
             // localStorage.setItem('localStorage3', JSON.stringify(users))
         }
         function createUserRemote(username, password) {
-            getUsersRemote()
+            return getUsersRemote()
                 .then(users => {
-                    users[username] = { password: password, username: username }
-                    return fetch("https://haydenivins.s3-ap-southeast-2.amazonaws.com/jswebchat.json",
-                        { method: "PUT", body: JSON.stringify(users) })
+                    if (users[username]) {
+                        console.log("existing user")
+                        return null
+                    } else {
+                        users[username] = { password: password, username: username }
+                        return fetch("https://haydenivins.s3-ap-southeast-2.amazonaws.com/jswebchat.json",
+                            { method: "PUT", body: JSON.stringify(users) })
+                    }
                 })
                 .then(response => {
-                    console.log('created user!')
+                    if (response) {
+                        console.log('created user!')
+                        return true
+                    } else {
+                        return false
+                    }
                 })
         }
         // add user to users
-        function deleteUserRemote() {
-            getUsersRemote()
-                .then(users => {
-                    delete users[username]
-                    return fetch("https://haydenivins.s3-ap-southeast-2.amazonaws.com/jswebchat.json",
-                        { method: "PUT", body: JSON.stringify(users) })
-                })
-                .then(response => {
-                    console.log('deleted user')
-                })
-        }
-        function signUp() {
+        async function signUp() {
             var username = document.querySelector("#username").value
             var password = document.querySelector("#password").value
             var status = document.querySelector("#status")
-            createUserRemote(username, password)
-            status.innerHTML = "sign up successful"
-            setTimeout(postLoggedIn, 1000)
+            var worked = await createUserRemote(username, password)
+            console.log(worked)
+            if (worked) {
+                status.innerHTML = "sign up successful"
+                setTimeout(postLoggedIn, 1000)
+            } else {
+                status.innerHTML = "Username taken"
+            }
         }
         function viewPassword() {
             console.log("ran")
